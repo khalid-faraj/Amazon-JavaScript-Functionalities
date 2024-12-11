@@ -1,5 +1,6 @@
 import { cart, AddItemToCart } from "../data/cart.js";
 import { products } from "../data/products.js";
+
 const productContent = document.querySelector('.products-grid'); 
 products.forEach((product)=>{
    productContent.innerHTML += `
@@ -54,26 +55,28 @@ products.forEach((product)=>{
    ` 
 })
 
+function UpdateCartQuantity()
+{
+  let quantityNumber = 0;
+  cart.forEach((cartItem) => {
+    quantityNumber += cartItem.quantity;
+  })
+   const ProductsQuantityNumber = document.querySelector(".js-cart-quantity");
+   ProductsQuantityNumber.innerHTML = quantityNumber;
+}
 
 const Add2CartButtons = document.querySelectorAll(".js-add-to-cart");
 Add2CartButtons.forEach((button)=> {
   let timeoutID;
   button.addEventListener("click", ()=>{
     const {productId} = button.dataset;
-   
     AddItemToCart(productId); // Update cart array.
+    UpdateCartQuantity();   //Update Cart element in amazon.html.
 
-    //Update Cart element in amazon.html.
-   let quantityNumber = 0;
-   cart.forEach((cartItem) => {
-     quantityNumber += cartItem.quantity;
-   })
-    const ProductsQuantityNumber = document.querySelector(".js-cart-quantity");
-    ProductsQuantityNumber.innerHTML = quantityNumber;
   
     //Added Item to Cart Apperance.
-   const AddedMsg = document.querySelector(`.js-${productId}-added`);
-   AddedMsg.classList.add('addedMsgOpacity');
+    const AddedMsg = document.querySelector(`.js-${productId}-added`);
+    AddedMsg.classList.add('addedMsgOpacity');
     clearTimeout(timeoutID);
     timeoutID = setTimeout(() => {
     AddedMsg.classList.remove('addedMsgOpacity');
