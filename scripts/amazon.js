@@ -61,7 +61,9 @@ Add2CartButtons.forEach((button)=> {
   button.addEventListener("click", ()=>{
     const {productId} = button.dataset;
    
-    AddItemToCart(productId);
+    AddItemToCart(productId); // Update cart array.
+
+    //Update Cart element in amazon.html.
    let quantityNumber = 0;
    cart.forEach((cartItem) => {
      quantityNumber += cartItem.quantity;
@@ -69,9 +71,9 @@ Add2CartButtons.forEach((button)=> {
     const ProductsQuantityNumber = document.querySelector(".js-cart-quantity");
     ProductsQuantityNumber.innerHTML = quantityNumber;
   
+    //Added Item to Cart Apperance.
    const AddedMsg = document.querySelector(`.js-${productId}-added`);
    AddedMsg.classList.add('addedMsgOpacity');
-    
     clearTimeout(timeoutID);
     timeoutID = setTimeout(() => {
     AddedMsg.classList.remove('addedMsgOpacity');
