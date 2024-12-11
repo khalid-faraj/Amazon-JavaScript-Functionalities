@@ -1,3 +1,5 @@
+import { cart, AddItemToCart } from "../data/cart.js";
+import { products } from "../data/products.js";
 const productContent = document.querySelector('.products-grid'); 
 products.forEach((product)=>{
    productContent.innerHTML += `
@@ -58,32 +60,11 @@ Add2CartButtons.forEach((button)=> {
   let timeoutID;
   button.addEventListener("click", ()=>{
     const {productId} = button.dataset;
-    const selectElement = document.querySelector(`.js-quantity-selector-${productId}`);
-
-    let matchingItem;
-    
-    cart.forEach((item)=>{
-      if(productId === item.productId)
-      {
-        matchingItem = item;
-      }
-    });
-
-    if(matchingItem)
-    {
-      matchingItem.quantity += 1;
-    }
-    else{
-        cart.push({
-          productId,
-          quantity: Number(selectElement.value)
-        });
-      }
-
-
+   
+    AddItemToCart(productId);
    let quantityNumber = 0;
-   cart.forEach((item) => {
-     quantityNumber += item.quantity;
+   cart.forEach((cartItem) => {
+     quantityNumber += cartItem.quantity;
    })
     const ProductsQuantityNumber = document.querySelector(".js-cart-quantity");
     ProductsQuantityNumber.innerHTML = quantityNumber;
@@ -96,7 +77,7 @@ Add2CartButtons.forEach((button)=> {
     AddedMsg.classList.remove('addedMsgOpacity');
   }, 2000);
 
-   
+    
   })
 });
 
