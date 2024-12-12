@@ -1,4 +1,4 @@
-import { cart } from "../data/cart.js";
+import { cart, RemoveFromCart} from "../data/cart.js";
 import { products } from "../data/products.js";
 import { formatCurrency } from "./utils/money.js";
 
@@ -12,7 +12,7 @@ cart.forEach( cartItem => {
             matchingProduct = product;
         }
     });
-    cartSuammaryHTML +=  `<div class="cart-item-container">
+    cartSuammaryHTML +=  `<div class="cart-item-container js-cart-item-container-${matchingProduct.id}">
             <div class="delivery-date">Delivery date: Tuesday, June 21</div>
 
             <div class="cart-item-details-grid">
@@ -27,11 +27,12 @@ cart.forEach( cartItem => {
                 </div>
                 <div class="product-price">$${formatCurrency(matchingProduct.priceCents)}</div>
                 <div class="product-quantity">
-                  <span> Quantity: <span class="quantity-label">${matchingProduct.quantity}</span> </span>
+                  <span> Quantity: <span class="quantity-label">${cartItem.quantity}</span> </span>
                   <span class="update-quantity-link link-primary">
                     Update
                   </span>
-                  <span class="delete-quantity-link link-primary">
+                  <span class="delete-quantity-link link-primary js-delete-quantity-link"
+                  data-product-id ="${matchingProduct.id}"">
                     Delete
                   </span>
                 </div>
@@ -80,5 +81,16 @@ cart.forEach( cartItem => {
           </div>`;
 });
 
-    const itemsListContainer = document.querySelector('.js-order-summary');
-    itemsListContainer.innerHTML = cartSuammaryHTML;
+const itemsListContainer = document.querySelector('.js-order-summary');
+itemsListContainer.innerHTML = cartSuammaryHTML;
+
+const deleteLinks = document.querySelectorAll('.js-delete-quantity-link'); 
+deleteLinks.forEach(link => {
+    link.addEventListener('click',()=>{
+        const {productId} = link.dataset;
+        RemoveFromCart(productId);
+        const container = document.querySelector(`.js-cart-item-container-${productId}`);
+        container.remove();
+    })
+});
+
