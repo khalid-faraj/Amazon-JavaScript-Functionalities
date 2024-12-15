@@ -32,6 +32,18 @@
   align-items: start;
 }
 
+.quantity-input{
+  width: 30px;
+  display: none;
+}
+
+.save-quantity-link{
+  display: none;
+}
+
+.is-editing-quantity .quantity-input
+{display: initial;}
+
 @media (max-width: 1000px) {
   .main {
     max-width: 500px;
@@ -208,4 +220,20 @@
 
   margin-top: 11px;
   margin-bottom: 15px;
+}
+
+.quantity-input{
+  width: 30px;
+  display: none;
+}
+
+.save-quantity-link{
+  display: none;
+}
+
+.is-editing-quantity .quantity-input, .is-editing-quantity .save-quantity-link
+{display: initial;}
+
+.update-quantity-remove{
+  display: none;
 }

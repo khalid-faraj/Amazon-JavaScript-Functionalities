@@ -1,4 +1,4 @@
-import { cart, AddItemToCart } from "../data/cart.js";
+import { cart, AddItemToCart, calculateCartQuantity } from "../data/cart.js";
 import { products } from "../data/products.js";
 import { formatCurrency } from "./utils/money.js";
 const productContent = document.querySelector('.products-grid'); 
@@ -55,15 +55,6 @@ products.forEach((product)=>{
    ` 
 })
 
-function UpdateCartQuantity()
-{
-  let quantityNumber = 0;
-  cart.forEach((cartItem) => {
-    quantityNumber += cartItem.quantity;
-  })
-   const ProductsQuantityNumber = document.querySelector(".js-cart-quantity");
-   ProductsQuantityNumber.innerHTML = quantityNumber;
-}
 
 const Add2CartButtons = document.querySelectorAll(".js-add-to-cart");
 Add2CartButtons.forEach((button)=> {
@@ -71,9 +62,7 @@ Add2CartButtons.forEach((button)=> {
   button.addEventListener("click", ()=>{
     const {productId} = button.dataset;
     AddItemToCart(productId); // Update cart array.
-    UpdateCartQuantity();   //Update Cart element in amazon.html.
-
-  
+    calculateCartQuantity();   //Update Cart element in amazon.html.
     //Added Item to Cart Apperance.
     const AddedMsg = document.querySelector(`.js-${productId}-added`);
     AddedMsg.classList.add('addedMsgOpacity');
@@ -81,10 +70,10 @@ Add2CartButtons.forEach((button)=> {
     timeoutID = setTimeout(() => {
     AddedMsg.classList.remove('addedMsgOpacity');
   }, 2000);
-
-    
   })
 });
+
+window.addEventListener('DOMContentLoaded',()=>{ calculateCartQuantity();});
 
 
 

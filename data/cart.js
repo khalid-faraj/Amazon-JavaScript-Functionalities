@@ -53,5 +53,29 @@ export function AddItemToCart(productId)
           }
       });
       cart = newCart;
+      CartitemsNumber();
       SaveToStorage();
   }
+
+
+export function CartitemsNumber()
+{
+let zNumberOfItemsInCart = 0;
+cart.forEach(item=> {
+  zNumberOfItemsInCart += item.quantity;
+});
+
+const numberOfItems = document.querySelector('.js-cart-items');
+numberOfItems.innerHTML = `${zNumberOfItemsInCart} Items`;
+}
+
+
+export function calculateCartQuantity()
+{
+  let quantityNumber = 0;
+  cart.forEach((cartItem) => {
+    quantityNumber += cartItem.quantity;
+  })
+   const ProductsQuantityNumber = document.querySelector(".js-cart-quantity");
+   ProductsQuantityNumber.innerHTML = quantityNumber;
+}
