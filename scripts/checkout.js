@@ -4,6 +4,8 @@ import { formatCurrency } from "./utils/money.js";
 import { deliveryOptions } from "../data/deliveryOptions.js";
 import dayjs from "https://unpkg.com/dayjs@1.11.10/esm/index.js";
 
+function randerOrderSummary()
+{
 let cartSuammaryHTML = '';
 cart.forEach( cartItem => {
     const cartItemId = cartItem.productId;
@@ -169,6 +171,12 @@ deliveryOptionsList.forEach((option)=>{
   option.addEventListener('click', ()=>{
     const {productId,deliveryOption} = option.dataset;
     updateDeliveryOption(productId, deliveryOption);
+    randerOrderSummary();
+
+
   })
  
 });
+};
+
+randerOrderSummary();
