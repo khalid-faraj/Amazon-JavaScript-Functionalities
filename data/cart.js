@@ -67,7 +67,6 @@ let zNumberOfItemsInCart = 0;
 cart.forEach(item=> {
   zNumberOfItemsInCart += item.quantity;
 });
-
 const numberOfItems = document.querySelector('.js-cart-items');
 numberOfItems.innerHTML = `${zNumberOfItemsInCart} Items`;
 }
@@ -81,4 +80,19 @@ export function calculateCartQuantity()
   })
    const ProductsQuantityNumber = document.querySelector(".js-cart-quantity");
    ProductsQuantityNumber.innerHTML = quantityNumber;
+   return quantityNumber;
+}
+
+export function updateQuantity(productId, newQuantity)
+{
+  let matchingItem;
+
+  cart.forEach((cartItem) => {
+    if (productId === cartItem.productId) {
+      matchingItem = cartItem;
+    }
+  });
+
+  matchingItem.quantity = newQuantity;
+    SaveToStorage();
 }
