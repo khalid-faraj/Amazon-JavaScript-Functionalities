@@ -113,26 +113,6 @@ function deliveryOptionsHtml(matchingProduct, cartItem)
   return html;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 const quantityLabel = document.querySelector('.quantity-label');
 const updateBtns = document.querySelectorAll('.js-update-quantity');
 updateBtns.forEach((link) => {
@@ -148,12 +128,16 @@ updateBtns.forEach((link) => {
   });
 
 
-const saveBtnsList = document.querySelectorAll('.js-save-quantity');
-saveBtnsList.forEach((saveBtn) => {
-  saveBtn.addEventListener('click', ()=>{
-    const productId = saveBtn.dataset.productId;
-    const quantityUserInput = document.querySelector(`.js-quantity-input-${productId}`);
+
+
+function SaveLinkActions(productId)
+{
+  const quantityUserInput = document.querySelector(`.js-quantity-input-${productId}`);
     const newQuantity = Number(quantityUserInput.value);
+    if (newQuantity < 0 || newQuantity >= 1000) {
+      alert('Quantity must be at least 0 and less than 1000');
+      return;
+    }
     const productUpdateLink = document.querySelector(`.update-link-${productId}`);
     const container = document.querySelector(
       `.js-cart-item-container-${productId}`
@@ -167,8 +151,14 @@ saveBtnsList.forEach((saveBtn) => {
     quantityLabel.classList.remove('quantity-label');
     productUpdateLink.classList.remove('update-quantity-link');
     CartitemsNumber()
-  });
+}
 
+const saveBtnsList = document.querySelectorAll('.js-save-quantity');
+saveBtnsList.forEach((saveBtn) => {
+  saveBtn.addEventListener('click', ()=>{
+    const productId = saveBtn.dataset.productId;
+    SaveLinkActions(productId);
+  });
 });
 
 
