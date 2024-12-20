@@ -21,12 +21,18 @@ export function renderPaymentSummary(){
     const TotalBeforeTaxCents = TotalItemsPriceCents + shippingAndHandelingCents;
     const EstimatedTaxCents = TotalBeforeTaxCents * 0.1;
     const OrderTotalCents = TotalBeforeTaxCents + EstimatedTaxCents;
+
+    let CartItems = 0;
+    cart.forEach(cartItem=> {
+    CartItems += cartItem.quantity;
+    });
+
     const paymentSummaryHtml = `
     <div class="payment-summary">
           <div class="payment-summary-title">Order Summary</div>
 
           <div class="payment-summary-row">
-            <div>Items (3):</div>
+            <div>Items (${CartItems}):</div>
             <div class="payment-summary-money">$${formatCurrency(TotalItemsPriceCents)}</div>
           </div>
 
