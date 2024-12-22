@@ -1,6 +1,10 @@
 import { cart, AddItemToCart, calculateCartQuantity } from "../data/cart.js";
-import { products } from "../data/products.js";
+import { products, loadProducts } from "../data/products.js";
 import { formatCurrency } from "./utils/money.js";
+
+loadProducts(randerProductsGrid);
+
+function randerProductsGrid(){
 const productContent = document.querySelector('.products-grid'); 
 products.forEach((product)=>{
    productContent.innerHTML += `
@@ -72,8 +76,6 @@ Add2CartButtons.forEach((button)=> {
   }, 2000);
   })
 });
-
-window.addEventListener('DOMContentLoaded',()=>{ calculateCartQuantity();});
-
-
+window.addEventListener('load',()=>{ calculateCartQuantity();});
+};
 
