@@ -76,6 +76,6 @@ Add2CartButtons.forEach((button)=> {
   }, 2000);
   })
 });
-window.addEventListener('load',()=>{ calculateCartQuantity();});
+    calculateCartQuantity();
 };
 
