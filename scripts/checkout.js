@@ -5,7 +5,13 @@ import { loadProducts, loadProductsFetch } from "../data/products.js";
 //import '../backend/backend-practice.js';
 
 async function  loadPage() {
+  try{
     await loadProductsFetch();
+  }
+  catch(error)
+  {
+    console.log('Unexpected error. please try again later.');
+  }
     renderOrderSummary();
     renderPaymentSummary();
 }
