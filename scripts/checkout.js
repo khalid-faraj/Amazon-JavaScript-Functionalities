@@ -4,14 +4,20 @@ import { loadProducts, loadProductsFetch } from "../data/products.js";
 //import '../data/cart-class.js';
 //import '../backend/backend-practice.js';
 
-
-
+async function  loadPage() {
+    await loadProductsFetch();
+    renderOrderSummary();
+    renderPaymentSummary();
+}
+loadPage();
+/*
 loadProductsFetch()
 .then(() => {
     renderOrderSummary();
     renderPaymentSummary();
   });
-  
+  */
+
 /*loadProducts(()=>{
     renderOrderSummary();
     renderPaymentSummary();
