@@ -5,8 +5,20 @@ import { formatCurrency } from "./utils/money.js";
 loadProducts(randerProductsGrid);
 
 function randerProductsGrid(){
+const url = new URL(window.location.href);
+const search = url.searchParams.get('search');
+
+let filteredProducts = products;
+
+// If a search exists in the URL parameters,
+// filter the products that match the search.
+if (search) {
+  filteredProducts = products.filter((product) => {
+    return product.name.includes(search);
+  });
+}  
 const productContent = document.querySelector('.products-grid'); 
-products.forEach((product)=>{
+filteredProducts.forEach((product)=>{
    productContent.innerHTML += `
      <div class="product-container">
           <div class="product-image-container">
@@ -77,5 +89,10 @@ Add2CartButtons.forEach((button)=> {
   })
 });
     calculateCartQuantity();
-};
 
+    document.querySelector('.js-search-button')
+    .addEventListener('click', () => {
+      const search = document.querySelector('.js-search-bar').value;
+      window.location.href = `amazon.html?search=${search}`;
+    });
+};
