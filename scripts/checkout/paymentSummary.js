@@ -65,7 +65,7 @@ export function renderPaymentSummary(){
 
     const paymentSummarySection = document.querySelector('.js-payment-summary');
     paymentSummarySection.innerHTML= paymentSummaryHtml;
-
+    
     const placeOrderBtn = document.querySelector('.js-place-order-btn');
     placeOrderBtn.addEventListener('click', async () =>
       {
@@ -84,6 +84,7 @@ export function renderPaymentSummary(){
       {
         console.log('Unexpected error. please try again later.');
       }
+
       window.location.href = 'orders.html';
       });
 }

@@ -3,12 +3,13 @@ import {orders} from '../data/order.js';
 import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
 import {formatCurrency} from './utils/money.js';
 import {AddItemToCart} from '../data/cart.js';
+import { calculateCartQuantity, cart } from '../data/cart.js';
 
 async function loadPage() {
   await loadProductsFetch();
-
+  const cartQuantity = document.querySelector('.js-cart-quantity');
+  cartQuantity.innerHTML = calculateCartQuantity();
   let ordersHTML = '';
-
   orders.forEach((order) => {
     const orderTimeString = dayjs(order.orderTime).format('MMMM D');
 
@@ -82,14 +83,10 @@ async function loadPage() {
     AddItemToCart(button.dataset.productId);
       button.innerHTML = 'Added';
       setTimeout(() => {
-        button.innerHTML = `
-          <img class="buy-again-icon" src="images/icons/buy-again.png">
-          <span class="buy-again-message">Buy it again</span>
-        `;
+        window.location.href = 'checkout.html';
       }, 1000);
     });
   });
-  
 }
 
 loadPage();
