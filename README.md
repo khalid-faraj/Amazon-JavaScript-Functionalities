@@ -7,6 +7,10 @@ This project is a fully functional e-commerce website inspired by platforms like
 - View past purchases on the **Orders Page**.
 - Track shipment progress on the **Track Order Page**.
 
+## 🚀 Live Demo
+[Link to Live Demo](https://khalidibnfaraj.github.io/JavaScript-Amazon/)
+
+
 ## 🎯 Features
 - **Responsive Design**: Accessible across various devices.
 - **Dynamic Functionality**: Powered by JavaScript for interactive elements.
