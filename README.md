@@ -1,4 +1,5 @@
-# E-Commerce Website Project
+# Amazon functionalities cloned using Javascript
+
 
 ## 🌟 Overview
 This project is a fully functional e-commerce website inspired by platforms like Amazon. It allows users to:
