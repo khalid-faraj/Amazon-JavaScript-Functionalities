@@ -9,7 +9,7 @@ This project is a fully functional e-commerce website inspired by platforms like
 - Track shipment progress on the **Track Order Page**.
 
 ## 🚀 Live Demo
-[Link to Live Demo](https://khalidelbeyali.github.io/Amazon-JavaScript-Functionalities/)
+[Link to Live Demo](https://khalid-faraj.github.io/Amazon-JavaScript-Functionalities/)
 
 
 ## 🎯 Features
